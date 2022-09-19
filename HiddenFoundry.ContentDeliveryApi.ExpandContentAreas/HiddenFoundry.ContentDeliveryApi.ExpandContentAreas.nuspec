@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>HiddenFoundry.ContentDeliveryApi.ExpandContentAreas</id>
+    <version>1.0.4</version>
+    <title>Expand Content Areas for Content Delivery API</title>
+    <authors>Surjit Bharath, Hidden Foundry</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://www.hiddenfoundry.com/thoughts/expand-content-area-addon-for-content-delivery-api/</projectUrl>
+    <iconUrl>https://www.optimizely.com/contentassets/0a78af1a7592409190915605612e9824/gb-12124-logo.png</iconUrl>
+    <description>Allow Content Delivery API to return nested content areas when using the expand function</description>
+    <releaseNotes>Initial Release</releaseNotes>
+	  <copyright>Hidden Foundry, Copyright © 2022</copyright>
+    <tags>Hidden Foundry ContentDeliveryApi ContentAreas Nested Expand</tags>
+	  <dependencies>
+		  <dependency id="EPiServer.ContentDeliveryApi.Core" version="3.0.0" />	  
+	  </dependencies>
+  </metadata>
+</package>
