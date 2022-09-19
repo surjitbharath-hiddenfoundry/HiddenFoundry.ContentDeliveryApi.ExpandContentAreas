@@ -11,7 +11,7 @@
     <description>Allow Content Delivery API to return nested content areas when using the expand function</description>
     <releaseNotes>Initial Release</releaseNotes>
 	  <copyright>Hidden Foundry, Copyright © 2022</copyright>
-    <tags>Hidden Foundry ContentDeliveryApi ContentAreas Nested Expand</tags>
+    <tags>EPiServerPublicModulePackage Hidden Foundry ContentDeliveryApi ContentAreas Nested Expand</tags>
 	  <dependencies>
 		  <dependency id="EPiServer.ContentDeliveryApi.Core" version="3.0.0" />	  
 	  </dependencies>
