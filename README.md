@@ -9,3 +9,7 @@ To configure the maximum levels deep you wish the recursively load through, add 
 services.ConfigureRecursiveContentAreaContentApiOptions(o =>
     o.MaxExpandContentAreaLevels = 4;
 });
+
+Database has already been setup with an example page of nested blocks with content areas.
+Make a request to: https://localhost:5000/en/standard-page-with-blocks/?expand=*
+
