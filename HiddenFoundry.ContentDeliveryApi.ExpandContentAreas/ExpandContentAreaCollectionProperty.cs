@@ -47,15 +47,15 @@ public class ExpandContentAreaCollectionProperty : CollectionPropertyModelBase<C
         {
             ExtendedContentApiOptions newOptions = new ExtendedContentApiOptions();
             var recursiveContentAreaOptions = ServiceLocator.Current.GetInstance<IOptions<ContentAreaExpandOptions>>();
-            newOptions.recursiveLevelsRemaining = recursiveContentAreaOptions.Value.MaxExpandContentAreaLevels;
+            newOptions.RecursiveLevelsRemaining = recursiveContentAreaOptions.Value.MaxExpandContentAreaLevels;
 
             _converterContext = GetConverterContextClone(_converterContext, newOptions);
         }
 
         var extendedOptions = _converterContext.Options as ExtendedContentApiOptions;
-        if (extendedOptions != null && extendedOptions.recursiveLevelsRemaining > 0)
+        if (extendedOptions != null && extendedOptions.RecursiveLevelsRemaining > 0)
         {
-            extendedOptions.recursiveLevelsRemaining--;
+            extendedOptions.RecursiveLevelsRemaining--;
 
             // Create new ConverterContext to pass into next iteration. We don't want to pass a reference as we want to persist the recursiveLevelsRemaining separately along each branch
 
@@ -117,7 +117,7 @@ public class ExpandContentAreaCollectionProperty : CollectionPropertyModelBase<C
 
     public class ExtendedContentApiOptions : EPiServer.ContentApi.Core.Configuration.ContentApiOptions, ICloneable
     {
-        public int recursiveLevelsRemaining { get; set; }
+        public int RecursiveLevelsRemaining { get; set; }
 
         public object Clone()
         {
