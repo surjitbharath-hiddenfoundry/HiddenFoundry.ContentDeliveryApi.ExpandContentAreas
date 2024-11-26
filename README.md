@@ -11,5 +11,12 @@ services.ConfigureRecursiveContentAreaContentApiOptions(o =>
 });
 
 Database has already been setup with an example page of nested blocks with content areas.
-Make a request to: https://localhost:5000/en/standard-page-with-blocks/?expand=*
+Make a GET Http request accept application/json to https://localhost:5000/en/standard-page-with-blocks/?expand=*
+
+Example:
+
+GET /en/standard-page-with-blocks/?expand=* HTTP/1.1
+Host: localhost:5000
+Accept: application/json
+Cookie: EPiStateMarker=true
 
