@@ -1,4 +1,5 @@
 ﻿using EPiServer;
+using EPiServer.ContentApi.Core.Configuration;
 using EPiServer.ContentApi.Core.Serialization;
 using EPiServer.ContentApi.Core.Serialization.Models;
 using EPiServer.Core;
@@ -45,17 +46,21 @@ public class ExpandContentAreaCollectionProperty : CollectionPropertyModelBase<C
         // If first time processing a content area then get the recursion value to keep tracking max iterations.
         if (_converterContext.Options is not ExtendedContentApiOptions)
         {
-            ExtendedContentApiOptions newOptions = new ExtendedContentApiOptions();
+            var contentApiOptions = ServiceLocator.Current.GetInstance<IOptions<ContentApiOptions>>();
+
+            var newOptions = new ExtendedContentApiOptions(contentApiOptions.Value);
+
             var recursiveContentAreaOptions = ServiceLocator.Current.GetInstance<IOptions<ContentAreaExpandOptions>>();
-            newOptions.recursiveLevelsRemaining = recursiveContentAreaOptions.Value.MaxExpandContentAreaLevels;
+
+            newOptions.RecursiveLevelsRemaining = recursiveContentAreaOptions.Value.MaxExpandContentAreaLevels;
 
             _converterContext = GetConverterContextClone(_converterContext, newOptions);
         }
 
         var extendedOptions = _converterContext.Options as ExtendedContentApiOptions;
-        if (extendedOptions != null && extendedOptions.recursiveLevelsRemaining > 0)
+        if (extendedOptions != null && extendedOptions.RecursiveLevelsRemaining > 0)
         {
-            extendedOptions.recursiveLevelsRemaining--;
+            extendedOptions.RecursiveLevelsRemaining--;
 
             // Create new ConverterContext to pass into next iteration. We don't want to pass a reference as we want to persist the recursiveLevelsRemaining separately along each branch
 
@@ -117,7 +122,26 @@ public class ExpandContentAreaCollectionProperty : CollectionPropertyModelBase<C
 
     public class ExtendedContentApiOptions : EPiServer.ContentApi.Core.Configuration.ContentApiOptions, ICloneable
     {
-        public int recursiveLevelsRemaining { get; set; }
+        public ExtendedContentApiOptions(ContentApiOptions contentApiOptions)
+        {
+            //When updating CD API, remember to keep this in sync if any new props are added
+
+            EnablePreviewFeatures = contentApiOptions.EnablePreviewFeatures;
+            EnablePreviewMode = contentApiOptions.EnablePreviewMode;
+            ExpandedBehavior = contentApiOptions.ExpandedBehavior;
+            ForceAbsolute = contentApiOptions.ForceAbsolute;
+            IncludeEmptyContentProperties = contentApiOptions.IncludeEmptyContentProperties;
+            IncludeMasterLanguage = contentApiOptions.IncludeMasterLanguage;
+            IncludeNumericContentIdentifier = contentApiOptions.IncludeNumericContentIdentifier;
+            MultiSiteFilteringEnabled = contentApiOptions.MultiSiteFilteringEnabled;
+            ValidateTemplateForContentUrl = contentApiOptions.ValidateTemplateForContentUrl;
+            FlattenPropertyModel = contentApiOptions.FlattenPropertyModel;
+            IncludeInternalContentRoots = contentApiOptions.IncludeInternalContentRoots;
+            IncludeSiteHosts = contentApiOptions.IncludeSiteHosts;
+            HttpResponseExpireTime = contentApiOptions.HttpResponseExpireTime;
+        }
+
+        public int RecursiveLevelsRemaining { get; set; }
 
         public object Clone()
         {
