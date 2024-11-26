@@ -4,6 +4,22 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+
+    <IsPackable>true</IsPackable>
+    <PackageId>HiddenFoundry.ContentDeliveryApi.ExpandContentAreas</PackageId>
+    <Version>1.0.5</Version>
+    <Title>Expand Content Areas for Content Delivery API</Title>
+    <Authors>Surjit Bharath, Hidden Foundry</Authors>
+    <Owners>Surjit Bharath</Owners>
+    <Description>Allow Content Delivery API to return nested content areas when using the expand function</Description>
+    <PackageTags>EPiServerPublicModulePackage;Hidden Foundry;ContentDeliveryApi;ContentAreas;Nested;Expand;Optimizely</PackageTags>
+    <Copyright>Hidden Foundry, Copyright © 2024</Copyright>
+    <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
+    <PackageProjectUrl>https://www.hiddenfoundry.com/thoughts/expand-content-area-addon-for-content-delivery-api/</PackageProjectUrl>
+    <PackageIconUrl>https://www.optimizely.com/contentassets/0a78af1a7592409190915605612e9824/gb-12124-logo.png</PackageIconUrl>
+    <PackageReleaseNotes>Respect Content API Options that are set by André Coetzeel</PackageReleaseNotes>
+
   </PropertyGroup>
 
   <ItemGroup>
